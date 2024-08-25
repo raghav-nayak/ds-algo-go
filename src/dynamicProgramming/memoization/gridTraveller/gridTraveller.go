@@ -38,7 +38,13 @@ func gridTravelerWithMap(m int, n int, memo_grid_value map[[2]int]int) int {
 		return 1
 	}
 
+	// both [m][n] and [n][m] same
+	// gridTravelerWithMap(m,n) = gridTravelerWithMap(n,m)
 	if val, ok := memo_grid_value[[2]int{m, n}]; ok {
+		return val
+	}
+
+	if val, ok := memo_grid_value[[2]int{n, m}]; ok {
 		return val
 	}
 
@@ -94,5 +100,5 @@ Without memoization (3,3) =  6  time taken =  166ns
 With memoization (3,3) =  6  time taken =  875ns
 
 Without memoization (18,18) =  2333606220  time taken =  21.514572167s
-With memoization (18,18) =  2333606220  time taken =  50.833µs
+With memoization (18,18) =  2333606220  time taken =  34.167µs
 */
