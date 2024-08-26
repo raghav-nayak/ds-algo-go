@@ -15,3 +15,64 @@ canSum(7, [2,4]) -> false
 
 package main
 
+import "fmt"
+
+func canSumWithoutMemo(targetSum int, numbers []int) bool {
+	if targetSum == 0 {
+		return true
+	}
+
+	if targetSum < 0 {
+		return false
+	}
+
+	for i := range numbers {
+		remainder := targetSum - numbers[i]
+		
+		if canSumWithoutMemo(remainder, numbers) {
+			return true
+		}
+	}
+	return false
+}
+
+func canSumWithMemo(targetSum int, numbers []int, memo map[int]bool) bool {
+	if _, ok := memo[targetSum]; ok {
+			return memo[targetSum]
+	}
+
+	if targetSum == 0 {
+		return true
+	}
+
+	if targetSum < 0 {
+		return false
+	}
+
+	for i := range numbers {
+		reminder := targetSum - numbers[i]
+		if canSumWithMemo(reminder, numbers, memo) {
+			memo[reminder] = true
+			return true
+		}
+	}
+	memo[targetSum] = false
+	return false
+}
+
+func main() {
+
+	fmt.Println(canSumWithoutMemo(7, []int{5, 3, 4, 7})) // true
+	fmt.Println(canSumWithoutMemo(7, []int{2, 4})) // false
+	fmt.Println(canSumWithoutMemo(7, []int{2, 3})) // true
+	fmt.Println(canSumWithoutMemo(7, []int{2, 3, 5})) // true
+	fmt.Println(canSumWithoutMemo(8, []int{2})) // true
+	fmt.Println(canSumWithoutMemo(300, []int{7, 14})) // false
+
+	fmt.Println(canSumWithMemo(7, []int{5, 3, 4, 7}, map[int]bool{})) // true
+	fmt.Println(canSumWithMemo(7, []int{2, 4}, map[int]bool{})) // false
+	fmt.Println(canSumWithMemo(7, []int{2, 3}, map[int]bool{})) // true
+	fmt.Println(canSumWithMemo(7, []int{2, 3, 5}, map[int]bool{})) // true
+	fmt.Println(canSumWithMemo(8, []int{2}, map[int]bool{})) // true
+	fmt.Println(canSumWithMemo(300, []int{7, 14}, map[int]bool{})) // false
+}
