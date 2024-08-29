@@ -81,8 +81,8 @@ func howSumWithoutMemo(targetSum int, numbers []int) []int {
 }
 
 func howSumMemo(targetSum int, numbers []int, memo map[int][]int) []int {
-    if _, ok := memo[targetSum]; ok {
-        return memo[targetSum]
+    if val, ok := memo[targetSum]; ok {
+        return val
     }
     if targetSum == 0 {
         return []int{}
@@ -92,13 +92,16 @@ func howSumMemo(targetSum int, numbers []int, memo map[int][]int) []int {
     }
     for _, num := range numbers {
         remainder := targetSum - num
-        if remainderResult := howSumMemo(remainder, numbers, memo); remainderResult != nil {
-            remainderResult = append(remainderResult, num)
-            memo[targetSum] = remainderResult
-            return remainderResult
+        remainderResult := howSumMemo(remainder, numbers, memo)
+        if remainderResult != nil {
+            // Create a new slice that is a copy of remainderResult
+            result := append([]int{}, remainderResult...)
+            result = append(result, num)
+            memo[targetSum] = result
+            return result
         }
     }
-    memo[targetSum] = []int{} // Set to an empty slice to indicate no combination
+    memo[targetSum] = nil // Memoize the failure case
     return nil
 }
 
