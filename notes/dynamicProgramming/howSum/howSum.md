@@ -32,8 +32,18 @@ howSum(0, [1,2,3])
 
 
 #### complexity
-time: O(n^m * m)
-space: O(m)
+
+brute force
+- time: O(n^m * m)
+- space: O(m)
+
+Memoized
+- time: `O(n*m*m)`
+- space: O(m^2)
+
+
+
+![[Pasted image 20240830235841.png]]
 
 
 
@@ -119,3 +129,5 @@ func main() {
 	fmt.Println(howSumMemo(300, []int{7, 14}, map[int][]int{}))
 }
 ```
+
+
