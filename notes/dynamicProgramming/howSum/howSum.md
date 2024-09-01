@@ -131,3 +131,19 @@ func main() {
 ```
 
 
+
+
+Note:
+```go
+result := append([]int{}, remainderResult...)
+result = append(result, num)
+```
+
+- **Purpose**: This line creates a new slice `result` that is a copy of `remainderResult`.
+- **Reason**: In Go, slices are reference types, meaning they point to an underlying array. If you directly modify `remainderResult`, you would be modifying the slice that other parts of your program might also be using. To avoid this, you create a new slice `result` that is independent of `remainderResult`.
+
+The issue with single line
+```go
+result := append(remainderResult, num)
+```
+If you use a single `append`, you're directly modifying `remainderResult`. Since slices in Go are references, any changes you make to `result` would also affect `remainderResult`. This is problematic because `remainderResult` might be reused in other parts of the code, and modifying it could lead to unexpected behavior (like changing the content of `remainderResult` in the memo or in other recursive calls).
