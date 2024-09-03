@@ -15,3 +15,15 @@ memoization recipe
 	- add a memo object
 	- add a base case to return memo values
 	- store return values into the memo
+
+
+
+![[Pasted image 20240903222518.png]]
+
+
+
+![[Pasted image 20240903222534.png]]
+
+
+
+![[Pasted image 20240903222600.png]]
