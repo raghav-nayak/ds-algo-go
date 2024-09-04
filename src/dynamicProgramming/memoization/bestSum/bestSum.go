@@ -41,9 +41,45 @@ func bestSumWithoutMemo(targetSum int, numbers []int) []int {
 	return shortestCombination
 }
 
+func bestSumMemo(targetSum int, numbers []int, memo map[int][]int) []int {
+	if val, ok := memo[targetSum]; ok {
+		return val
+	}
+	if targetSum == 0 {
+		return []int{}
+	}
+
+	if targetSum < 0 {
+		return nil
+	}
+
+	var shortestCombination []int
+
+	for _, num := range numbers{
+		remainder := targetSum - num
+		remainderCombination := bestSumMemo(remainder, numbers, memo)
+		if remainderCombination != nil {
+			combination := append([]int{}, remainderCombination...)
+            combination = append(combination, num)
+			if (shortestCombination == nil || len(combination) < len(shortestCombination)) {
+				shortestCombination = combination
+			}
+		}
+	}
+
+	memo[targetSum] = shortestCombination
+	return shortestCombination
+}
+
 func main() { 
 
 	fmt.Println(bestSumWithoutMemo(7, []int{5, 3, 4, 7}))
 	fmt.Println(bestSumWithoutMemo(8, []int{2, 3, 5}))
 	fmt.Println(bestSumWithoutMemo(8, []int{1, 4, 5}))
+	// fmt.Println(bestSumWithoutMemo(100, []int{1, 2, 5, 25}))
+
+	fmt.Println(bestSumMemo(7, []int{5, 3, 4, 7}, map[int][]int{}))
+	fmt.Println(bestSumMemo(8, []int{2, 3, 5}, map[int][]int{}))
+	fmt.Println(bestSumMemo(8, []int{1, 4, 5}, map[int][]int{}))
+	fmt.Println(bestSumMemo(100, []int{1, 2, 5, 25}, map[int][]int{}))
 }
