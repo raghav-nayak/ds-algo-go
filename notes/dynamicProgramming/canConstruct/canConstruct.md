@@ -14,3 +14,33 @@ sk + ate _ bo + ?
 `canConstruct("", ["cat", "dog", "mouse"])` -> true
 empty string generation takes 0 elements from the array
 
+
+![[Pasted image 20240905230927.png]]
+don't take anything from middle
+
+
+
+![[Pasted image 20240905231028.png]]
+
+
+![[Pasted image 20240905231121.png]]
+
+
+![[Pasted image 20240905231143.png]]
+
+
+
+![[Pasted image 20240905231151.png]]
+
+
+
+![[Pasted image 20240905231159.png]]
+
+
+
+
+another example
+
+![[Pasted image 20240905231347.png]]
+
+
