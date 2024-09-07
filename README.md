@@ -1,0 +1,1 @@
+This repository is created to keep track of all the data structures and algorithms I practice in Golang.
