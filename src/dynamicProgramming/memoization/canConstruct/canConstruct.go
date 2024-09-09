@@ -16,3 +16,22 @@ canConstruct("", ["cat", "dog", "mouse"]) -> true
 empty string generation takes 0 elements from the array
 
 */
+
+package main
+
+import "fmt"
+
+func canConstruct(target string, wordBank []string) bool {
+	if target == "" {
+		return true
+	}
+
+	return true
+}
+
+func main() {
+	fmt.Println(canConstruct("abcdef", []string{"ab", "abc", "cd", "def", "abcd"}))
+
+	fmt.Println(canConstruct("skateboard", []string{"bo", "rd", "ate", "t", "ska", "sk", "boar"}))
+
+}
