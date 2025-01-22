@@ -50,9 +50,9 @@ func canSumWithMemo(targetSum int, numbers []int, memo map[int]bool) bool {
 	}
 
 	for i := range numbers {
-		reminder := targetSum - numbers[i]
-		if canSumWithMemo(reminder, numbers, memo) {
-			memo[reminder] = true
+		remainder := targetSum - numbers[i]
+		if canSumWithMemo(remainder, numbers, memo) {
+			memo[remainder] = true
 			return true
 		}
 	}
